@@ -2,9 +2,7 @@ package com.zeph.simpledonwloadtool;
 
 
 import android.os.AsyncTask;
-import android.os.Build.VERSION_CODES;
 import android.os.Environment;
-import android.support.annotation.RequiresApi;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +11,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-@RequiresApi(api = VERSION_CODES.CUPCAKE)
 public class DownloadTask extends AsyncTask<String, Integer, Integer> {
 
   public static final int TYPE_SUCCESS = 0;
@@ -41,7 +38,7 @@ public class DownloadTask extends AsyncTask<String, Integer, Integer> {
       String fileName = downloadUrl.substring(downloadUrl.lastIndexOf("/"));
       String directory = Environment
           .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
-      file = new File(fileName + directory);
+      file = new File(directory + fileName);
       if (file.exists()) {
         // 如果文件存在则文件的长度等于下载长度
         downloadedLength = file.length();
