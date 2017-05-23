@@ -102,7 +102,7 @@ public class DownloadTask extends AsyncTask<String, Integer, Integer> {
   @Override
   protected void onProgressUpdate(Integer... values) {
     int progress = values[0];
-    if (progress > lastProgress){
+    if (progress > lastProgress) {
       listener.onProgress(progress);
       lastProgress = progress;
     }
@@ -110,7 +110,7 @@ public class DownloadTask extends AsyncTask<String, Integer, Integer> {
 
   @Override
   protected void onPostExecute(Integer integer) {
-    switch (integer){
+    switch (integer) {
       case TYPE_SUCCESS:
         listener.onSuccess();
         break;
@@ -127,15 +127,16 @@ public class DownloadTask extends AsyncTask<String, Integer, Integer> {
     }
   }
 
-  public void pauseDownload(){
+  public void pauseDownload() {
     isPause = true;
   }
 
-  public void cancelDownload(){
+  public void cancelDownload() {
     isCanceled = true;
   }
 
   private long getContentLength(String downloadUrl) throws IOException {
+    // 获取下载文件的内容大小
     OkHttpClient client = new OkHttpClient();
     Request request = new Request.Builder().url(downloadUrl).build();
     Response response = client.newCall(request).execute();
